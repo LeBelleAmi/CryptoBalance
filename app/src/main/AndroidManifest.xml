@@ -31,7 +31,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.MainActivity" />
 
-
         </activity>
     </application>
 

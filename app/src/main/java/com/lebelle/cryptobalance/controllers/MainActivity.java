@@ -42,7 +42,6 @@ import com.lebelle.cryptobalance.api.Client;
 import com.lebelle.cryptobalance.api.Service;
 import com.lebelle.cryptobalance.model.BitcoinResponse;
 import com.lebelle.cryptobalance.model.BtcExchange;
-import com.lebelle.cryptobalance.model.BtcSharedPreference;
 import com.lebelle.cryptobalance.model.Currency;
 import com.lebelle.cryptobalance.model.CurrencyAdapter;
 import com.lebelle.cryptobalance.model.CustomSpinnerAdapter;
@@ -80,8 +79,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerviewItemT
     /*progress dialog for network call*/
     ProgressDialog progressDialog;
 
-    public BtcSharedPreference sharedPreference;
-
     //navigation drawer
     private DrawerLayout mDrawerLayout;
 
@@ -104,9 +101,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerviewItemT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreference = new BtcSharedPreference();
-        currencies = sharedPreference.getCurrencyList(getApplicationContext());
-        //if (currencies == null) currencies = new ArrayList<>();
 
         /*initialize arrays*/
         currencyNames = getResources().getStringArray(R.array.array_currency_options);
@@ -325,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerviewItemT
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             //this method gets called automatically when the user selects an item so we need to
-            // retrieve what the use has clicked
+            // retrieve what the user has clicked
                 spinnerPosition = position;
                 parent.getItemAtPosition(position);
             countryFlags.getResourceId(parent.getSelectedItemPosition(), -1);
@@ -402,7 +396,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerviewItemT
 
             // remove the item from recycler view
             mAdapter.removeItem(viewHolder.getAdapterPosition());
-            //sharedPreference.deleteCard(getApplicationContext(), deletedItem);
 
             // showing snack bar with Undo option
             Snackbar snackbar = Snackbar
